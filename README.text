@@ -1,6 +1,18 @@
 = Statics
 
-== Grammar
+
+== Read syntax
+
+'() is sugar for (null), the empty list constructor.
+
+'(1 2 3) is sugar for (cons 1 (cons 2 (cons 3 ())))
+
+(foo) is sugar for (apply foo (values))
+
+(foo a b c) is sugar for (apply foo (values a b c))
+
+
+== Syntax (essentials)
 
 (define-static-library <library-name>
   (export <export*>)
@@ -20,7 +32,13 @@
   Shorthand to define a procedure.
   The identifiers are an implicit tuple.
 
+(lambda <identifier> <expression+>)
+
 (lambda (<binding*>) <expression+>)
+  Shorthand for (lambda g
+                  (match g
+                    ((values <binding*>)
+                     <expression+>)))
 
 (let <identifier> (<binding*>) <expression+>)
   Shorthand to locally define a recursive procedure
@@ -55,3 +73,43 @@ Subexpressions:
   | (<identifier> <selector*>)      select constructor, unpack tuple
   | <identifier>                    any value, bind to variable
   | else                            any value, do not bind
+
+
+== Syntax (operators)
+
+(values <expression*>)
+(vector <expression*>)
+(list <expression*>)
+
+Construct an n-tuple, a list, or a vector, from the given elements.
+
+The zero-argument case constructs a 0-tuple, an empty list, or an
+empty vector. A 0-tuple is the unit value of Statics.
+
+(apply <expression> <expression>)
+
+The first expression must evaluate to a function; the second one to a
+tuple. The function is applied to the tuple and one value is returned.
+
+(+ <expression*>)
+
+Add numbers. The zero-argument case returns 0.
+
+(* <expression*>)
+
+Multiply numbers. The zero-argument case returns 1.
+
+(- <expression*>)
+
+Subtract numbers. One argument means negation. Zero arguments is an error.
+
+(/ <expression*>)
+
+Divide numbers. One argument means reciprocal. Zero arguments is an error.
+
+(string-append <expression*>)
+(vector-append <expression*>)
+(append <expression*>)
+
+Concatenate strings, vectors, or lists. The zero-argument case returns
+"", #(), or '(), respectively.
