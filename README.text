@@ -98,23 +98,36 @@ tuple. The function is applied to the tuple and one value is returned.
 
 (+ <expression*>)
 
-Add numbers. The zero-argument case returns 0.
+Add numbers.
+One-argument case returns the number itself.
+Zero-argument case returns 0.
+Identifier syntax returns a procedure that adds two numbers.
 
 (* <expression*>)
 
-Multiply numbers. The zero-argument case returns 1.
+Multiply numbers.
+One-argument case returns the number itself.
+Zero-argument case returns 1.
+Identifier syntax returns a procedure that multiplies two numbers.
 
 (- <expression*>)
 
-Subtract numbers. One argument means negation. Zero arguments is an error.
+Subtract numbers.
+One-argument case returns negation.
+Zero-argument case is an error.
+Identifier syntax returns a procedure that subtracts two numbers.
 
 (/ <expression*>)
 
-Divide numbers. One argument means reciprocal. Zero arguments is an error.
+Divide numbers.
+One-argument case returns reciprocal.
+Zero-argument case is an error.
+Identifier syntax returns a procedure that divides two numbers.
 
 (string-append <expression*>)
 (vector-append <expression*>)
 (append <expression*>)
 
-Concatenate strings, vectors, or lists. The zero-argument case returns
-"", #(), or '(), respectively.
+Concatenate strings, vectors, or lists.
+The zero-argument case returns "", #(), or '(), respectively.
+Identifier syntax returns a procedure that concatenates two things.
