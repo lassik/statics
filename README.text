@@ -1,0 +1,57 @@
+= Statics
+
+== Grammar
+
+(define-static-library <library-name>
+  (export <export*>)
+  (import <import*>)
+  (begin <expression+>))
+
+(define-group <definition*>)
+  Make definitions that reference each other.
+
+(define <identifier> <expression>)
+  Define a value assigned once.
+
+(define-values (<identifier+>) <expression>)
+  Define multiple values assigned once by unpacking from a tuple.
+
+(define (<identifier> <identifier*>) <expression+>)
+  Shorthand to define a procedure.
+  The identifiers are an implicit tuple.
+
+(lambda (<binding*>) <expression+>)
+
+(let <identifier> (<binding*>) <expression+>)
+  Shorthand to locally define a recursive procedure
+  and call it with initial values.
+
+(let (<binding*>) <expression+>)
+
+(let* (<binding*>) <expression+>)
+
+(if <expression> <expression> <expression>)
+
+(cond <cond-clause+>)
+
+(match <expression> <match-clause+>)
+
+(match-lambda <match-clause+>)
+
+Subexpressions:
+
+<binding> = (<identifier> <expression>)
+
+<cond-clause> = (else|<expression> <expression+>)
+
+<match-clause> = (<selector> <expression+>)
+
+<selector>
+  = (values <selector*>)            select n-tuple and unpack it
+  | (vector <selector*>)            select n-vector and unpack it
+  | (list <selector*>)              select n-list and unpack it
+  | (cons <selector> <selector>)    select list, unpack head and tail
+  | (cons* <selector*> <selector>)  select list, unpack n first and tail
+  | (<identifier> <selector*>)      select constructor, unpack tuple
+  | <identifier>                    any value, bind to variable
+  | else                            any value, do not bind
