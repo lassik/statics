@@ -33,6 +33,11 @@
   The identifiers are an implicit tuple.
 
 (lambda <identifier> <expression+>)
+  Make a closure and return it.
+  In Statics, every procedure takes one tuple and returns one tuple.
+  In the case of a 1-tuple, the tuple-ness is hidden from the user.
+  In Scheme (lambda x ...) puts the whole arg list in x.
+  In Statics (lambda x ...) puts the whole arg tuple in x.
 
 (lambda (<binding*>) <expression+>)
   Shorthand for (lambda g
