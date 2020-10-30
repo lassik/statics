@@ -7,6 +7,8 @@
 
 (values ...) is the type of all tuples with the given element types
 
+(record ...) is the type of all records with the given fields
+
 (procedure ...) is the type of all procedures passing the given types
 
 
