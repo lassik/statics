@@ -56,6 +56,12 @@ string
 
 (foo a b c) is sugar for (apply foo (values a b c))
 
+(define-record-type <identifier>
+  (<identifier> <type>)
+  ...)
+  is shorthand for (define-type-alias <identifier>
+                     (record (<identifier> <type>)
+                             ...))
 
 == Syntax (essentials)
 
