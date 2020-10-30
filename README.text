@@ -33,7 +33,7 @@ string
 
 (define-union-type (list 't)
   (null)
-  (pair (values 't (list 't))))
+  (pair 't (list 't)))
 
 (define-union-type (maybe 'a)
   (nothing)
