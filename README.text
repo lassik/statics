@@ -1,6 +1,49 @@
 = Statics
 
 
+== Type system
+
+'a 'b 'c ... are type variables
+
+(values ...) is the type of all tuples with the given element types
+
+(procedure ...) is the type of all procedures passing the given types
+
+
+== Primitive types
+
+exact
+
+inexact
+
+string
+
+(vector 'a)
+
+(port 'a)
+
+
+== Standard derived types
+
+(define-type-alias bytevector (vector (unsigned 8)))
+
+(define-union-type boolean
+  (false)
+  (true))
+
+(define-union-type (list 't)
+  (null)
+  (pair (values 't (list 't))))
+
+(define-union-type (maybe 'a)
+  (nothing)
+  (just 'a))
+
+(define-union-type (either 'a 'b)
+  (left 'a)
+  (right 'b))
+
+
 == Read syntax
 
 '() is sugar for (null), the empty list constructor.
